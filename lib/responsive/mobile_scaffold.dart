@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_flutter_app/constants.dart';
+import 'package:responsive_flutter_app/util/my_tile.dart';
 
 class MobileScaffold extends StatelessWidget {
   const MobileScaffold({super.key});
@@ -13,13 +14,36 @@ class MobileScaffold extends StatelessWidget {
       body: Column(
         children: [
           // 4 box on top
-          GridView.builder(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, index) {},
+          AspectRatio(
+            aspectRatio: 1,
+            child: SizedBox(
+              width: double.infinity,
+              child: GridView.builder(
+                itemCount: 4,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      color: Colors.blue,
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
 
-          //   listtiles
+          //   list
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return const MyTile();
+              },
+            ),
+          )
         ],
       ),
     );
